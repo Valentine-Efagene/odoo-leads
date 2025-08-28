@@ -5,8 +5,8 @@ from ..config import settings
 from ..common.schema import Lead
 from ..auth.auth_service import authenticate
 
-async def save(lead: Lead) -> str:
-    uid = await authenticate()
+def save(lead: Lead) -> str:
+    uid = authenticate()
 
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(settings.url))
     id = odoo.execute_kw(
@@ -21,8 +21,8 @@ async def save(lead: Lead) -> str:
         }])
     return str(id)
 
-async def update(id: int, lead: Lead) -> None:
-    uid = await authenticate()
+def update(id: int, lead: Lead) -> None:
+    uid = authenticate()
 
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(settings.url))
     odoo.execute_kw(
@@ -38,7 +38,7 @@ async def update(id: int, lead: Lead) -> None:
         }])
 
 async def getAll(offset: int, limit: int):
-    uid = await authenticate()
+    uid = authenticate()
 
     # Connect to Odoo
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(settings.url))
@@ -65,7 +65,7 @@ async def getAll(offset: int, limit: int):
 
 
 async def getByPhoneNumber(phone_number: str) -> List[User]:
-    uid = await authenticate()
+    uid = authenticate()
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(settings.url))
     search_domain = [[["phone", "=", phone_number]]]
     records = odoo.execute_kw(
@@ -84,8 +84,8 @@ async def getByPhoneNumber(phone_number: str) -> List[User]:
     return [User.model_validate(r) for r in records]
 
 
-async def getByEmail(email: str) -> List[User]:
-    uid = await authenticate()
+def getByEmail(email: str) -> List[User]:
+    uid = authenticate()
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(settings.url))
     search_domain = [[["email", "=", email]]]
     records = odoo.execute_kw(

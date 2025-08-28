@@ -4,7 +4,7 @@ from .auth_schema import AuthDto
 from ..config import settings
 from ..common.enums import ApiResponseMessage
 
-async def authenticate():
+def authenticate():
     # Connect to Odoo
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/common".format(settings.url))
     try:
