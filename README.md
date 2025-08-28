@@ -1,13 +1,12 @@
-
 # Welcome to your CDK Python project!
 
 This is a blank project for CDK development with Python.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
-This project is set up like a standard Python project.  The initialization
+This project is set up like a standard Python project. The initialization
 process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
+directory. To create the virtualenv it assumes that there is a `python3`
 (or `python` for Windows) executable in your path with access to the `venv`
 package. If for any reason the automatic creation of the virtualenv fails,
 you can create the virtualenv manually.
@@ -49,10 +48,31 @@ command.
 
 ## Useful commands
 
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+- `cdk ls` list all stacks in the app
+- `cdk synth` emits the synthesized CloudFormation template
+- `cdk list` list stacks
+- `cdk deploy` deploy this stack to your default AWS account/region
+- `cdk diff` compare deployed stack with current state
+- `cdk docs` open CDK documentation
+- `aws sqs send-message \
+  --queue-url https://sqs.us-east-1.amazonaws.com/898751738669/OdooLeadsQueue \
+  --message-body '{
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "+1-5551234567",
+    "utm": "facebook_ads",
+    "property_type": "Apartment",
+    "payment_option": "Mortgage",
+    "place_of_work": "Acme Corp",
+    "salary_range": "50k-70k",
+    "project_location": "Lagos"
+  }'` push message to the queue
+- `aws logs tail /aws/lambda/OdooLeadLambda --follow` check lambda logs
+
+## Notes
+
+- The lambda layer will require that you have a docker daemon running
 
 Enjoy!
+# odoo-leads
