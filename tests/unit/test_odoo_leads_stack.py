@@ -10,6 +10,14 @@ def test_sqs_queue_created():
     stack = OdooLeadsStack(app, "odoo-leads")
     template = assertions.Template.from_stack(stack)
 
-#     template.has_resource_properties("AWS::SQS::Queue", {
-#         "VisibilityTimeout": 300
-#     })
+    template.has_resource_properties("AWS::SQS::Queue", {
+        "VisibilityTimeout": 30
+    })
+
+    # Assert that an SQS Queue exists
+    template.has_resource_properties("AWS::SQS::Queue", {})
+
+    # Assert that a Lambda function exists
+    template.has_resource_properties("AWS::Lambda::Function", {
+        "Runtime": "python3.11",
+    })
