@@ -64,8 +64,7 @@ async def getAll(offset: int, limit: int):
     return records
 
 
-async def getByPhoneNumber(phone_number: str) -> List[User]:
-    uid = authenticate()
+async def getByPhoneNumber(phone_number: str, uid: str) -> List[User]:
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(settings.url))
     search_domain = [[["phone", "=", phone_number]]]
     records = odoo.execute_kw(
@@ -84,8 +83,7 @@ async def getByPhoneNumber(phone_number: str) -> List[User]:
     return [User.model_validate(r) for r in records]
 
 
-def getByEmail(email: str) -> List[User]:
-    uid = authenticate()
+def getByEmail(email: str, uid: str) -> List[User]:
     odoo = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(settings.url))
     search_domain = [[["email", "=", email]]]
     records = odoo.execute_kw(
