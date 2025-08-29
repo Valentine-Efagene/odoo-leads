@@ -1,6 +1,6 @@
 import xmlrpc.client
 import ssl
-from ..config import settings
+from config import settings
 
 
 def authenticate() -> str | None:

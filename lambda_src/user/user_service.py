@@ -1,10 +1,10 @@
 import xmlrpc.client
 from typing import List
 from .user_schema import User
-from ..config import settings
-from ..common.schema import Lead
+from config import settings
+from common.schema import Lead
 import ssl
-from ..auth.auth_service import authenticate
+from auth.auth_service import authenticate
 
 
 def save(lead: Lead, uid: str) -> str:

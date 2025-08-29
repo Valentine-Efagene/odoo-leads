@@ -1,5 +1,4 @@
-import json
-from lambda_src.worker import handler
+from worker import handler
 
 if __name__ == "__main__":
     # simulate SQS event
