@@ -19,10 +19,10 @@ def updateDetails(person: User, lead: Lead, uid: str):
     }
 
     if dto:
-        print(f"Updating user {person.id} with: {dto}")
+        print(f"✅ Updating user {person.id} with: {dto}")
         update(id=person.id, dto=dto, uid=uid)
     else:
-        print(f"No updates needed for user {person.id}")
+        print(f"✅ No updates needed for user {person.id}")
 
 
 def handler(event, context):
@@ -34,7 +34,7 @@ def handler(event, context):
         data = json.loads(body)
         lead = Lead(**data)
         lead.name = f"{lead.firstName} {lead.lastName}"
-        print(f"✅ Processed lead: {lead}")
+        print(f"Parsed lead: {lead}")
         uid = authenticate()
 
         if uid == None:
@@ -55,5 +55,6 @@ def handler(event, context):
             return {"statusCode": 200}
 
         save(lead=lead, uid=uid)
+        print("✅ New user created: {lead}")
 
     return {"statusCode": 200}
