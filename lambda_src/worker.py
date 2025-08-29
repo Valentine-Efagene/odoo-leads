@@ -1,7 +1,7 @@
 import json
-from .common.schema import Lead
-from .auth.auth_service import authenticate
-from .user.user_service import getByEmail, getByPhoneNumber, save
+from common.schema import Lead
+from auth.auth_service import authenticate
+from user.user_service import getByEmail, getByPhoneNumber, save
 
 
 def handler(event, context):
@@ -12,6 +12,7 @@ def handler(event, context):
         print(f"Processing message: {body}")
         data = json.loads(body)
         lead = Lead(**data)
+        lead.name = f"{lead.firstName} {lead.lastName}"
         print(f"✅ Processed lead: {lead}")
         uid = authenticate()
 
@@ -28,6 +29,6 @@ def handler(event, context):
         if foundByPhone:
             return {"statusCode": 200}
 
-        save(lead=lead)
+        save(lead=lead, uid=uid)
 
     return {"statusCode": 200}
