@@ -1,7 +1,7 @@
 import json
-from .common.schema import Lead
-from .auth.auth_service import authenticate
-from .user.user_service import getByEmail, getByPhoneNumber, save
+from lambda_src.common.schema import Lead
+from lambda_src.auth.auth_service import authenticate
+from lambda_src.user.user_service import getByEmail, getByPhoneNumber, save
 
 
 def handler(event, context):
