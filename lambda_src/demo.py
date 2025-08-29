@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
 from worker import handler
 
 if __name__ == "__main__":

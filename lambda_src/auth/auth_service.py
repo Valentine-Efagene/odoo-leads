@@ -4,7 +4,6 @@ from config import settings
 
 
 def authenticate() -> str | None:
-    print("Config:", settings)
     context = ssl._create_unverified_context()
     odoo = xmlrpc.client.ServerProxy(
         "{}/xmlrpc/2/common".format(settings.url), context=context

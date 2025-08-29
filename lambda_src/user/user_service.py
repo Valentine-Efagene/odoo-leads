@@ -23,7 +23,7 @@ def save(lead: Lead, uid: str) -> str:
     return str(id)
 
 
-def update(id: int, lead: Lead, uid: str) -> None:
+def update(id: int, dto: dict, uid: str) -> None:
     context = ssl._create_unverified_context()
     odoo = xmlrpc.client.ServerProxy(
         "{}/xmlrpc/2/object".format(settings.url), context=context
@@ -35,7 +35,7 @@ def update(id: int, lead: Lead, uid: str) -> None:
         "res.partner",
         "write",
         [[id]],
-        [{"email": lead.email, "phone": lead.phone}],
+        [dto],
     )
 
 
