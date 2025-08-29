@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from pydantic.generics import GenericModel
 from typing import Generic, TypeVar, Optional, Annotated
 from pydantic import BaseModel, EmailStr, StringConstraints
 
@@ -37,7 +36,7 @@ def ErrorResponseModel(error, code, message):
 T = TypeVar("T")
 
 
-class ResponseModel(GenericModel, Generic[T]):
+class ResponseModel(BaseModel, Generic[T]):
     data: T
     message: str
     code: int = 200
